@@ -1,9 +1,13 @@
 const router = require("express").Router();
-
+const jwt = require("jsonwebtoken");
 const Users = require("./users-model.js");
 
 router.get("/", (req, res) => {
-  Users.find().then(users => {
+
+  const client = jwt.decode(req.headers.authorization)
+
+
+  Users.findBy({"department":client.department}).then(users => {
       users.length>0
         ?res.status(200).json(users)
         :res.status(404).json({msg:"no users found"})

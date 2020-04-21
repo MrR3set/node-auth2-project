@@ -42,10 +42,11 @@ function generateToken(user){
     const payload = {
         subject: user.id,
         username: user.username,
+        department: user.department
     }
 
     const options = {
-        expiresIn:"1h",
+        expiresIn:"30m",
     }
 
     return jwt.sign(payload, secret, options);
