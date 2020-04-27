@@ -4,8 +4,7 @@ const Users = require("./users-model.js");
 
 router.get("/", (req, res) => {
 
-  const client = jwt.decode(req.headers.authorization)
-
+  const client = jwt.decode(req.headers.authorization);
 
   Users.findBy({"department":client.department}).then(users => {
       users.length>0

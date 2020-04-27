@@ -18,7 +18,15 @@ server.use("/api/users",authenticator, userRouter);
 server.use("/api/auth", authRouter);
 
 server.get("/",(req,res)=>{
-    res.json({msg:"api ok"});
+    res.json({message:"api up",
+        auth_endpoints:{
+            login:"POST /api/auth/login",
+            register:"POST /api/auth/register"
+        },
+        music_endpoints:{
+            message:"under development",
+        }
+    });
 })
 
 module.exports = server;
